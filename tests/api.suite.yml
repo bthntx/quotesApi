@@ -1,0 +1,16 @@
+actor: ApiTester
+modules:
+    enabled:
+        - \App\Tests\Helper\Api
+        - Asserts
+        - REST:
+            depends: Symfony
+            url: 'http://localhost'
+        - Symfony:
+              app_path: src
+              var_path: 'var'
+              environment: 'test'
+        - Doctrine2:
+            depends: Symfony
+            cleanup: true
+

@@ -1,0 +1,58 @@
+api_rest_v1_register_user:
+  path:  /register
+  defaults: { _controller: App\Controller\AuthApiController::registerUser, _format: json}
+  methods: [POST]
+
+api_rest_v1_change_token:
+  path:  /refreshToken
+  defaults: { _controller: App\Controller\AuthApiController::changeToken, _format: json}
+  methods: [PUT]
+
+
+api_rest_v1_quotes_list:
+  path:  /quotes
+  defaults: { _controller: App\Controller\QuotesApiController::index, _format: json}
+  methods: [GET]
+
+api_rest_v1_quotes_get:
+  path:  /quotes/{id}
+  defaults: { _controller: App\Controller\QuotesApiController::getQuote, _format: json}
+  methods: [GET]
+  requirements:
+    id: \d+
+
+api_rest_v1_quotes_edit:
+  path:  /quotes/{id}
+  defaults: { _controller: App\Controller\QuotesApiController::updateQuote, _format: json}
+  methods: [PUT]
+  requirements:
+    id: \d+
+
+api_rest_v1_quotes_delete:
+  path:  /quotes/{id}
+  defaults: { _controller: App\Controller\QuotesApiController::deleteQuote, _format: json}
+  methods: [DELETE]
+  requirements:
+    id: \d+
+
+api_rest_v1_quotes_create:
+  path:  /quotes
+  defaults: { _controller: App\Controller\QuotesApiController::createQuote, _format: json}
+  methods: [POST]
+  requirements:
+    id: \d+
+
+
+api_rest_v1_quotes_random:
+  path:  /quotes/random
+  defaults: { _controller: App\Controller\QuotesApiController::randomQuote, _format: json}
+  methods: [GET]
+  requirements:
+    id: \d+
+
+api_rest_v1_quotes_by_author:
+  path:  /quotes/{quoteId}/author
+  defaults: { _controller: App\Controller\QuotesApiController::authorQuotes, _format: json}
+  methods: [GET]
+  requirements:
+    id: \d+

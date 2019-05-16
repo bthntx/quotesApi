@@ -1,0 +1,3 @@
+api_v1_rest:
+  resource: "routes/api_v1.yaml"
+  prefix:   /api/v1
