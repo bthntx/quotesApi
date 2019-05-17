@@ -25,8 +25,8 @@ class QuoteRepository extends ServiceEntityRepository implements QuoteRepository
     {
         // We can use  ORDER BY RAND() but it will be slow on large tables.
 
-        $count = $this->createQueryBuilder('count')->select('COUNT(q)')->getQuery()->getSingleScalarResult();
-        $rand = rand(0,$count);
+        $count = $this->createQueryBuilder('cnt')->select('COUNT(cnt)')->getQuery()->getSingleScalarResult();
+        $rand = rand(1,$count)-1;
         return $this->createQueryBuilder('q')
             ->setFirstResult($rand)
             ->setMaxResults(1)

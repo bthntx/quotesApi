@@ -169,7 +169,7 @@ class QuotesApiControllerCest
         $user2QuoteId = explode('/',$I->createQuote('User2MarkQuote','Author One'));
         $user2QuoteId = array_pop($user2QuoteId);
 
-        $I->sendGET('/api/v1/quotes/');
+        $I->sendGET('/api/v1/quotes');
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->canSeeResponseIsJson();
 
@@ -183,7 +183,7 @@ class QuotesApiControllerCest
 
         $I->prepareAuthHeaders($user1);
 
-        $I->sendGET('/api/v1/quotes/');
+        $I->sendGET('/api/v1/quotes');
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->canSeeResponseIsJson();
 
@@ -196,6 +196,16 @@ class QuotesApiControllerCest
     }
 
 
+    public function testRandomQuote(ApiTester $I)
+    {
+        $user = $I->grabUserAndPrepareAuthHeaders();
+        $I->wantToTest('fetch random quote');
+        $I->createQuotesByCurrentUser(15,'Author One');
+        $I->sendGET('/api/v1/quotes/random');
+        $I->seeResponseCodeIs(HttpCode::OK);
+        $I->canSeeResponseIsJson();
 
+
+    }
 
 }

@@ -42,7 +42,7 @@ class AuthApiController extends AbstractFOSRestController
             return $this->handleView($this->view(['message' => 'already registered'], Response::HTTP_FORBIDDEN));
         }
 
-        //@TODO separate User Manager
+        //@TODO move to separate User Manager
         try {
             $user = new User();
             $user->setUuid($this->tokenManager->generateToken(TokenManager::TOKEN_TYPE_UUID));
